@@ -4,15 +4,15 @@ import bcrypt from 'bcrypt';
 import { AuthOptions } from 'next-auth';
 import NextAuth from 'next-auth/next';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import GithubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
+import KakaoProvider from 'next-auth/providers/kakao';
 
 export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
-    GithubProvider({
-      clientId: process.env.GITHUB_ID as string,
-      clientSecret: process.env.GITHUB_SECRET as string,
+    KakaoProvider({
+      clientId: process.env.KAKAO_CLIENT_ID as string,
+      clientSecret: process.env.KAKAO_CLIENT_SECRET as string,
     }),
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
@@ -28,7 +28,7 @@ export const authOptions: AuthOptions = {
       async authorize(credentials) {
         // 이메일과 비밀번호가 없으면 에러 쓰로우
         if (!credentials?.email || !credentials?.password) {
-          throw new Error('다시 시도해주세요');
+          throw new Error('이메일과 비밀번호를 확인해주세요.');
         }
         // 이메일로 유저 찾기
         const user = await prisma.user.findUnique({
@@ -38,7 +38,7 @@ export const authOptions: AuthOptions = {
         });
         // 유저가 없거나 비밀번호가 없으면 에러 쓰로우
         if (!user || !user.hashedPassword) {
-          throw new Error('다시 시도해주세요');
+          throw new Error('다시 시도해주세요.');
         }
         // 비밀번호 체크
         // compare 함수를 사용하여 비밀번호가 일치하는지 확인
@@ -48,7 +48,7 @@ export const authOptions: AuthOptions = {
         );
         // 비밀번호가 일치하지 않으면 에러 쓰로우
         if (!isCorrectPassword) {
-          throw new Error('다시 시도해보세요!');
+          throw new Error('비밀번호를 확인해주세요.');
         }
         return user;
       },
