@@ -20,7 +20,6 @@
     "next": "14.0.4",
     "next-auth": "^4.24.5",
     "next-cloudinary": "^5.16.0",
-    "next-superjson-plugin": "^0.5.10",
     "pusher": "^5.2.0",
     "pusher-js": "^8.4.0-rc2",
     "react": "^18",
@@ -31,7 +30,6 @@
     "react-loading-skeleton": "^3.3.1",
     "react-select": "^5.8.0",
     "react-spinners": "^0.13.8",
-    "superjson": "^2.2.1",
     "zustand": "^4.4.7"
   },
   "devDependencies": {

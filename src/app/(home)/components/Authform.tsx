@@ -1,36 +1,38 @@
 'use client';
-import Button from '@/components/Button';
-import Input from '@/components/inputs/Input';
+
 import axios from 'axios';
 import { signIn, useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import { toast } from 'react-hot-toast';
+import { useCallback, useEffect, useState } from 'react';
 import { BsGoogle } from 'react-icons/bs';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
 import { RiKakaoTalkFill } from 'react-icons/ri';
+import Input from '@/components/inputs/Input';
 import AuthSocialButton from './AuthSocialButton';
+import Button from '@/components/Button';
+import { toast } from 'react-hot-toast';
 
-type Varinat = 'LOGIN' | 'REGISTER';
+type Variant = 'LOGIN' | 'REGISTER';
 
-const Authform = () => {
+const AuthForm = () => {
   const session = useSession();
   const router = useRouter();
-  const [variant, setVariant] = useState<Varinat>('LOGIN');
+  const [variant, setVariant] = useState<Variant>('LOGIN');
   const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     if (session?.status === 'authenticated') {
       router.push('/conversations');
     }
   }, [session?.status, router]);
 
-  const toggleVariant = () => {
+  const toggleVariant = useCallback(() => {
     if (variant === 'LOGIN') {
       setVariant('REGISTER');
     } else {
       setVariant('LOGIN');
     }
-  };
+  }, [variant]);
 
   const {
     register,
@@ -50,20 +52,38 @@ const Authform = () => {
     if (variant === 'REGISTER') {
       axios
         .post('/api/register', data)
-        .then(() => signIn('credentials', { ...data, redirect: false }))
-        .then((cb) => {
-          if (cb?.error) toast.error('다시 시도해주세요.');
-          if (cb?.ok) router.push('/conversations');
+        .then(() =>
+          signIn('credentials', {
+            ...data,
+            redirect: false,
+          })
+        )
+        .then((callback) => {
+          if (callback?.error) {
+            toast.error('Invalid credentials!');
+          }
+
+          if (callback?.ok) {
+            router.push('/conversations');
+          }
         })
-        .catch(() => toast.error('다시 시도해주세요.'))
+        .catch(() => toast.error('Something went wrong!'))
         .finally(() => setIsLoading(false));
     }
 
     if (variant === 'LOGIN') {
-      signIn('credentials', { ...data, redirect: false })
-        .then((cb) => {
-          if (cb?.error) toast.error('다시 시도해주세요.');
-          if (cb?.ok) router.push('/conversations');
+      signIn('credentials', {
+        ...data,
+        redirect: false,
+      })
+        .then((callback) => {
+          if (callback?.error) {
+            toast.error('Invalid credentials!');
+          }
+
+          if (callback?.ok) {
+            router.push('/conversations');
+          }
         })
         .finally(() => setIsLoading(false));
     }
@@ -71,10 +91,16 @@ const Authform = () => {
 
   const socialAction = (action: string) => {
     setIsLoading(true);
+
     signIn(action, { redirect: false })
-      .then((cb) => {
-        if (cb?.error) toast.error('다시 시도해주세요.');
-        if (cb?.ok) router.push('/conversations');
+      .then((callback) => {
+        if (callback?.error) {
+          toast.error('Invalid credentials!');
+        }
+
+        if (callback?.ok) {
+          router.push('/conversations');
+        }
       })
       .finally(() => setIsLoading(false));
   };
@@ -143,7 +169,7 @@ const Authform = () => {
           <div>
             {variant === 'LOGIN'
               ? '메신저를 처음 사용하시나요?'
-              : '이미 계정이 있으신가요?'}
+              : '이미 계정이 있으신가요??'}
           </div>
           <div onClick={toggleVariant} className='underline cursor-pointer'>
             {variant === 'LOGIN' ? '계정 만들기' : '로그인하기'}
@@ -154,4 +180,4 @@ const Authform = () => {
   );
 };
 
-export default Authform;
+export default AuthForm;
