@@ -14,6 +14,8 @@ const MobileItem: React.FC<MobileItemProps> = ({
   active,
   onClick,
 }) => {
+  // onClick이 undefined 또는 null이 아닌 경우에만 onClick 함수를 호출
+  // onClick prop이 제공되지 않았을 때 onClick() 호출로 인해 발생하는 오류를 방지하기 위함
   const handleClick = () => {
     if (onClick) {
       return onClick();

@@ -2,7 +2,7 @@
 import { signOut } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
 import { HiChat } from 'react-icons/hi';
-import { HiUsers, HiArrowLeftOnRectangle } from 'react-icons/hi2';
+import { HiArrowLeftOnRectangle, HiUsers } from 'react-icons/hi2';
 import useConversation from './useConversation';
 
 // 사이드바 메뉴 라우팅경로

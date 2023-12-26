@@ -17,6 +17,7 @@ const getCurrentUser = async () => {
     if (!currentUser) {
       return null;
     }
+
     return currentUser;
   } catch (error) {
     return console.log('현재 유저를 찾을 수 없습니다.');

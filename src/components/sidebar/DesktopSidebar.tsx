@@ -6,9 +6,9 @@ import Avartar from '../Avartar';
 import DesktopItem from './DesktopItem';
 
 interface DesktopSidebarProps {
-  user: User;
+  currentUser: User;
 }
-const DesktopSidebar = ({ user }: DesktopSidebarProps) => {
+const DesktopSidebar = ({ currentUser }: DesktopSidebarProps) => {
   const routes = useRoutes();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -51,7 +51,7 @@ const DesktopSidebar = ({ user }: DesktopSidebarProps) => {
             onClick={() => setIsOpen(true)}
             className='transition cursor-pointer hover:opacity-75'
           >
-            <Avartar user={user} />
+            <Avartar currentUser={currentUser} />
           </div>
         </nav>
       </div>

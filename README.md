@@ -13,3 +13,9 @@
 ### - 로그인 / 회원가입 페이지 분기 처리 UI제작
 
 ### - register API 정의
+
+## 2. Sidebar
+
+### - currentUser actions 정의
+
+### - mobile / basic sidebar UI 정의
