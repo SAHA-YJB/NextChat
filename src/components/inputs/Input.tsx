@@ -36,6 +36,7 @@ const Input = ({
           autoComplete={id}
           disabled={disabled}
           {...register(id, { required })}
+          // clsx: 조건부 클래스를 적용할 때 조건이 트루라면 뒤의 스트링을 합쳐줌
           className={clsx(
             `
             form-input
@@ -44,7 +45,6 @@ const Input = ({
             rounded-md 
             border-0 
             py-1.5
-            px-3 
             text-gray-900 
             shadow-sm 
             ring-1 
@@ -56,6 +56,7 @@ const Input = ({
             focus:ring-blue-600 
             sm:text-sm 
             sm:leading-6`,
+            // clsx로 합쳐진다
             errors[id] && 'focus:ring-rose-500',
             disabled && 'opacity-50 cursor-default'
           )}

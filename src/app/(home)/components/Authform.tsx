@@ -1,16 +1,15 @@
 'use client';
-
+import Button from '@/components/Button';
+import Input from '@/components/inputs/Input';
 import axios from 'axios';
 import { signIn, useSession } from 'next-auth/react';
-import { useCallback, useEffect, useState } from 'react';
-import { BsGoogle } from 'react-icons/bs';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
-import { RiKakaoTalkFill } from 'react-icons/ri';
-import Input from '@/components/inputs/Input';
-import AuthSocialButton from './AuthSocialButton';
-import Button from '@/components/Button';
+import { useCallback, useEffect, useState } from 'react';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
+import { BsGoogle } from 'react-icons/bs';
+import { RiKakaoTalkFill } from 'react-icons/ri';
+import AuthSocialButton from './AuthSocialButton';
 
 type Variant = 'LOGIN' | 'REGISTER';
 
@@ -46,6 +45,7 @@ const AuthForm = () => {
     },
   });
 
+  // 리액트 훅 폼에서 인풋에 레지스터를 등록했다면 데이터 안에 밸류가 담김
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
 
@@ -60,14 +60,14 @@ const AuthForm = () => {
         )
         .then((callback) => {
           if (callback?.error) {
-            toast.error('Invalid credentials!');
+            toast.error('다시 시도해주세요.');
           }
 
           if (callback?.ok) {
             router.push('/conversations');
           }
         })
-        .catch(() => toast.error('Something went wrong!'))
+        .catch(() => toast.error('다시 시도해주세요.'))
         .finally(() => setIsLoading(false));
     }
 
@@ -78,7 +78,7 @@ const AuthForm = () => {
       })
         .then((callback) => {
           if (callback?.error) {
-            toast.error('Invalid credentials!');
+            toast.error('다시 시도해주세요.');
           }
 
           if (callback?.ok) {
@@ -95,7 +95,7 @@ const AuthForm = () => {
     signIn(action, { redirect: false })
       .then((callback) => {
         if (callback?.error) {
-          toast.error('Invalid credentials!');
+          toast.error('다시 시도해주세요.');
         }
 
         if (callback?.ok) {
@@ -109,6 +109,7 @@ const AuthForm = () => {
     <div className='mt-8 sm:mx-auto sm:w-full sm:max-w-md'>
       <div className='px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10'>
         <form className='space-y-6' onSubmit={handleSubmit(onSubmit)}>
+          {/* 레지스터일 경우에만 이름 인풋 추갸 */}
           {variant === 'REGISTER' && (
             <Input
               disabled={isLoading}
@@ -138,6 +139,7 @@ const AuthForm = () => {
             type='password'
           />
           <div>
+            {/* fullWidth: 버튼 요소가 부모 요소의 전체 가로 너비를 차지하도록 설정하는 역할 */}
             <Button disabled={isLoading} fullWidth type='submit'>
               {variant === 'LOGIN' ? '로그인' : '회원가입'}
             </Button>
@@ -147,6 +149,7 @@ const AuthForm = () => {
         <div className='mt-6'>
           <div className='relative'>
             <div className='absolute inset-0 flex items-center '>
+              {/* 줄 만들기 */}
               <div className='w-full border-t border-gray-300' />
             </div>
             <div className='relative flex justify-center text-sm'>

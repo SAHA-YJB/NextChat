@@ -18,6 +18,7 @@ export const authOptions: AuthOptions = {
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
+    // 이메일과 비밀번호로 로그인
     CredentialsProvider({
       name: 'credentials',
       credentials: {
@@ -63,4 +64,5 @@ export const authOptions: AuthOptions = {
 
 const handler = NextAuth(authOptions);
 
+// 라우트파일이기 때문에 get, post로 내보냄
 export { handler as GET, handler as POST };

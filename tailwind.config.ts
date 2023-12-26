@@ -16,6 +16,7 @@ const config: Config = {
     },
   },
   plugins: [
+    // 폼 요소의 기본적인 스타일링 추가
     require('@tailwindcss/forms')({
       strategy: 'base',
     }),

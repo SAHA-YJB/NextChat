@@ -1,36 +1,15 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# cahtApp - 1:1 채팅과 그룹채팅을 해보자
 
-## Getting Started
+### 사용기술: Next / Typescript / Prisma / pusher / TailwindCSS
 
-First, run the development server:
+## 1. Next-Auth 적용
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### - NextAuth 설정, 미들웨어 설정
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### - 프리즈마 스키마 작성(mongoDB 스키마)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### - 메인 레이아웃은 서버 컴포넌트로 사용(세션프로바이더와 토스터 분리하여 레이아웃 래핑)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### - 로그인 / 회원가입 페이지 분기 처리 UI제작
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### - register API 정의
