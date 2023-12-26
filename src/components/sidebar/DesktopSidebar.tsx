@@ -1,14 +1,14 @@
 'use client';
 import useRoutes from '@/hooks/useRoutes';
 import { User } from '@prisma/client';
-import { use, useState } from 'react';
-import DesktopItem from './DesktopItem';
+import { useState } from 'react';
 import Avartar from '../Avartar';
+import DesktopItem from './DesktopItem';
 
 interface DesktopSidebarProps {
-  currentUser: User;
+  user: User;
 }
-const DesktopSidebar = ({ currentUser }: DesktopSidebarProps) => {
+const DesktopSidebar = ({ user }: DesktopSidebarProps) => {
   const routes = useRoutes();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -51,7 +51,7 @@ const DesktopSidebar = ({ currentUser }: DesktopSidebarProps) => {
             onClick={() => setIsOpen(true)}
             className='transition cursor-pointer hover:opacity-75'
           >
-            <Avartar currentUser={currentUser} />
+            <Avartar user={user} />
           </div>
         </nav>
       </div>
