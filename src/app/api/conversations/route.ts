@@ -2,6 +2,7 @@ import getCurrentUser from '@/app/actions/getCurrentUser';
 import { NextResponse } from 'next/server';
 import prisma from '@/libs/prismaDb';
 
+// 대화생성 API
 export async function POST(request: Request) {
   try {
     const currentUser = await getCurrentUser();
@@ -22,7 +23,7 @@ export async function POST(request: Request) {
     });
 
     const singleConversation = existingConversation[0];
-
+    // 이미 생성된 채팅방이 있음 그냥 넘겨주기
     if (singleConversation) {
       return NextResponse.json(singleConversation);
     }
@@ -30,6 +31,7 @@ export async function POST(request: Request) {
     const newConversation = await prisma.conversation.create({
       data: {
         users: {
+          // 현재 유저와 선택한 유저를 연결
           connect: [{ id: currentUser.id }, { id: userId }],
         },
       },

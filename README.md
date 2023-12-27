@@ -14,8 +14,18 @@
 
 ### - register API 정의
 
-## 2. Sidebar
+## 2. Sidebar 제작
 
 ### - currentUser actions 정의
 
 ### - mobile / basic sidebar UI 정의
+
+### 3. User & chatList 나열
+
+### - 공통 로딩모달(HeadlessUI) 생성
+
+### - 유저 리스트(유저박스[1명의 유저])(본인 제외 유저 나열)/getUsers action create
+
+### - 대화생성(conversation) API 정의 -> 대화방 리스트(대화방[한 개의 채팅])
+
+### - 대화 리스트 컴포넌트 / 모든 대화getConversations actions 정의

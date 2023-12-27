@@ -16,7 +16,9 @@ interface ConversationBoxProps {
 }
 
 const ConversationBox = ({ data, selected }: ConversationBoxProps) => {
+  // 상대방 정보 가져오기
   const otherUser = useOtherUser(data);
+  // 로그인한 사용자 정보 가져오기
   const session = useSession();
   const router = useRouter();
 
@@ -24,6 +26,7 @@ const ConversationBox = ({ data, selected }: ConversationBoxProps) => {
     router.push(`/conversations/${data.id}`);
   }, [data, router]);
 
+  // useMemo를 사용해서 마지막 메시지를 가져옴
   const lastMessage = useMemo(() => {
     const messages = data.messages || [];
 
@@ -35,6 +38,7 @@ const ConversationBox = ({ data, selected }: ConversationBoxProps) => {
     [session.data?.user?.email]
   );
 
+  // 본 사람 확인
   const hasSeen = useMemo(() => {
     if (!lastMessage) {
       return false;
@@ -49,9 +53,10 @@ const ConversationBox = ({ data, selected }: ConversationBoxProps) => {
     return seenArray.filter((user) => user.email === userEmail).length !== 0;
   }, [userEmail, lastMessage]);
 
+  // 마지막 메시지 텍스트 가져오기
   const lastMessageText = useMemo(() => {
     if (lastMessage?.image) {
-      return 'Sent an image';
+      return '사진';
     }
 
     if (lastMessage?.body) {
@@ -95,6 +100,7 @@ const ConversationBox = ({ data, selected }: ConversationBoxProps) => {
             </p>
             {lastMessage?.createdAt && (
               <p className='text-xs font-light text-gray-400 '>
+                {/* p = 오전 오후인 문자열 반환 */}
                 {format(new Date(lastMessage.createdAt), 'p')}
               </p>
             )}

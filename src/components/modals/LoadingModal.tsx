@@ -6,7 +6,9 @@ import { ClipLoader } from 'react-spinners';
 const LoadingModal = () => {
   return (
     <Transition.Root show as={Fragment}>
+      {/* 다이얼로그 모달 */}
       <Dialog as='div' className='relative z-50' onClose={() => {}}>
+        {/* 백그라운드부분 */}
         <Transition.Child
           as={Fragment}
           enter='ease-out duration-300'
@@ -19,6 +21,7 @@ const LoadingModal = () => {
           <div className='fixed inset-0 transition-opacity bg-gray-100 bg-opacity-50 ' />
         </Transition.Child>
 
+        {/* 스피너부분 */}
         <div className='fixed inset-0 z-10 overflow-y-auto'>
           <div className='flex items-center justify-center min-h-full p-4 text-center '>
             <Transition.Child

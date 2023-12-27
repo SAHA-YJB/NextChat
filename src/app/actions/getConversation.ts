@@ -13,6 +13,7 @@ const getConversations = async () => {
         lastMessageAt: 'desc',
       },
       where: {
+        // 현재 유저가 가지고 있는 대화들을 가져옴
         userIds: {
           has: currentUser.id,
         },
@@ -29,7 +30,7 @@ const getConversations = async () => {
     });
     return conversations;
   } catch (error) {
-    return []
+    return [];
   }
 };
 

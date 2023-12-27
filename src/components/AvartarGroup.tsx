@@ -7,8 +7,10 @@ interface AvatarGroupProps {
 }
 
 const AvatarGroup = ({ users = [] }: AvatarGroupProps) => {
+  // 유저가 많아도 3명만 보여주기
   const slicedUsers = users.slice(0, 3);
 
+  // 유저 이미지 위치
   const positionMap = {
     0: 'top-0 left-[12px]',
     1: 'bottom-0',
