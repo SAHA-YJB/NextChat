@@ -81,7 +81,11 @@ const ConversationBox = ({ data, selected }: ConversationBoxProps) => {
         selected ? 'bg-neutral-100' : 'bg-white'
       )}
     >
-      {data.isGroup ? <AvatarGroup /> : <Avatar />}
+      {data.isGroup ? (
+        <AvatarGroup users={data.users} />
+      ) : (
+        <Avatar currentUser={otherUser} />
+      )}
       <div className='flex-1 min-w-0'>
         <div className='focus:outline-none'>
           <span className='absolute inset-0' aria-hidden='true' />
