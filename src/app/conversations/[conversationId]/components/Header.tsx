@@ -21,6 +21,7 @@ const Header = ({ conversation }: HeaderProps) => {
   // 대화방에서 상대방 데이터 가져오기
   const otherUser = useOtheruser(conversation);
   const { members } = useActiveList();
+
   //상대방이 온라인인지 아닌지 확인
   const isActive = members.indexOf(otherUser?.email!) !== -1;
 
@@ -33,7 +34,7 @@ const Header = ({ conversation }: HeaderProps) => {
 
   return (
     <>
-     <ProfileDrawer
+      <ProfileDrawer
         data={conversation}
         isOpen={drawerOpen}
         onClose={() => setDrawerOpen(false)}

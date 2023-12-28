@@ -28,7 +28,7 @@ const Form = () => {
     });
   };
 
-  const handleUpload = (result: any) => {
+  const handleImgUpload = (result: any) => {
     axios.post('/api/messages', {
       image: result.info.secure_url,
       conversationId: conversationId,
@@ -39,10 +39,10 @@ const Form = () => {
     <div className='flex items-center w-full gap-2 px-4 py-4 bg-white border-t lg:gap-4'>
       <CldUploadButton
         options={{ maxFiles: 1 }}
-        onUpload={handleUpload}
+        onUpload={handleImgUpload}
         uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_PRESET}
       >
-        <HiPhoto size={30} className='text-orange-500' />
+        <HiPhoto size={30} className='text-blue-500' />
       </CldUploadButton>
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -53,11 +53,11 @@ const Form = () => {
           register={register}
           errors={errors}
           required
-          placeholder='채팅을 입력해주세요.'
+          placeholder='메시지를 입력해주세요.'
         />
         <button
           type='submit'
-          className='p-2 transition rounded-full cursor-pointer bg-orange-500 hover:bg-orange-600'
+          className='p-2 transition rounded-full cursor-pointer bg-blue-500 hover:bg-blue-600'
         >
           <HiPaperAirplane size={18} className='text-white' />
         </button>

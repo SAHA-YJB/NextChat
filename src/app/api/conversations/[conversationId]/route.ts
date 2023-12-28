@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 import prisma from '@/libs/prismaDb';
 
 interface IParam {
-  conversationsId?: string;
+  conversationId?: string;
 }
 
 export async function DELETE(request: Request, { params }: { params: IParam }) {

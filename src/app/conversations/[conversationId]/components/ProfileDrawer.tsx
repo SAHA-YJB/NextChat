@@ -6,10 +6,10 @@ import useOtherUser from '@/hooks/useOtheruser';
 import { Dialog, Transition } from '@headlessui/react';
 import { Conversation, User } from '@prisma/client';
 import { format } from 'date-fns';
+import { ko } from 'date-fns/locale';
 import { Fragment, useMemo, useState } from 'react';
 import { IoClose, IoTrash } from 'react-icons/io5';
 import ConfirmModal from './ConfirmModal';
-import { ko } from 'date-fns/locale';
 
 interface ProfileDrawerProps {
   isOpen: boolean;
@@ -23,6 +23,7 @@ const ProfileDrawer = ({ isOpen, onClose, data }: ProfileDrawerProps) => {
   const [confirmOpen, setConfirmOpen] = useState(false);
   const otherUser = useOtherUser(data);
 
+  // 대화 생성 날짜
   const joinedDate = useMemo(() => {
     return format(new Date(otherUser.createdAt), 'yyyy년 MM월 dd일', {
       locale: ko,
@@ -81,7 +82,8 @@ const ProfileDrawer = ({ isOpen, onClose, data }: ProfileDrawerProps) => {
                           <div className='flex items-center ml-3 h-7'>
                             <button
                               type='button'
-                              className='text-gray-400 bg-white rounded-md hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+                              className='text-gray-400 bg-white rounded-md hover:text-gray-500 focus:outline-none 
+                                           focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
                               onClick={onClose}
                             >
                               <span className='sr-only'>Close panel</span>
