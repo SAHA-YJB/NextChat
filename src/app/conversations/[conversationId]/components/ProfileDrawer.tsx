@@ -8,7 +8,7 @@ import { Conversation, User } from '@prisma/client';
 import { format } from 'date-fns';
 import { Fragment, useMemo, useState } from 'react';
 import { IoClose, IoTrash } from 'react-icons/io5';
-import ConfirmModal from './ConfirmModal'
+import ConfirmModal from './ConfirmModal';
 import { ko } from 'date-fns/locale';
 
 interface ProfileDrawerProps {
@@ -112,7 +112,7 @@ const ProfileDrawer = ({ isOpen, onClose, data }: ProfileDrawerProps) => {
                                 <IoTrash size={20} />
                               </div>
                               <div className='text-sm font-light text-neutral-600'>
-                                Delete
+                                삭제
                               </div>
                             </div>
                           </div>
