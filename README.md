@@ -36,8 +36,12 @@
 
 ### - chatHeader -> zustand사용 온라인 오프라인 유저 아이디 스토어 생성(useActiveList)
 
-### = 프로필 모달 구현(HeadlessUI) / DELETE API 정의
+### - 프로필 모달 구현(HeadlessUI) / DELETE API 정의
 
 ### - 채팅 작성을 위한 폼 생성
 
 ### - 클라우디너리 커넥팅
+
+# 5. 실시간 채팅 구현
+
+### - pusher 연동
