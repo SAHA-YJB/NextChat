@@ -10,7 +10,7 @@ const useConversation = () => {
     if (!params?.conversationId) {
       return '';
     }
-    return params.conversationId;
+    return params.conversationId as string;
   }, [params?.conversationId]);
 
   // 불 값으로 할당하기 위해 !!를 사용함
