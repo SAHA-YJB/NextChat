@@ -16,7 +16,7 @@ export async function DELETE(request: Request, { params }: { params: IParam }) {
       return NextResponse.json(null);
     }
 
-    const existingConversation = await prisma.conversation.findMany({
+    const existingConversation = await prisma.conversation.findUnique({
       where: {
         id: conversationsId,
       },
@@ -38,7 +38,7 @@ export async function DELETE(request: Request, { params }: { params: IParam }) {
       },
     });
 
-    existingConversation.users.forEach((user: any) => {
+    existingConversation.users.forEach((user) => {
       if (user.email) {
         pusherServer.trigger(
           user.email,
