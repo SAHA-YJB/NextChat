@@ -7,8 +7,12 @@ import { find } from 'lodash';
 import { useEffect, useRef, useState } from 'react';
 import MessageBox from './MessageBox';
 
-const Body = ({ initMessages }) => {
-  const [messages, setMessages] = useState<FullMessageType[]>([]);
+interface BodyProps {
+  initMessages: FullMessageType[];
+}
+
+const Body = ({ initMessages }: BodyProps) => {
+  const [messages, setMessages] = useState<FullMessageType[]>(initMessages);
   const bottomRef = useRef<HTMLDivElement>(null);
   const { conversationId } = useConversation();
 
@@ -41,7 +45,7 @@ const Body = ({ initMessages }) => {
       {messages.map((message, i) => (
         <MessageBox
           key={message.id}
-          message={message}
+          data={message}
           isLast={i === messages.length - 1}
         />
       ))}
