@@ -25,10 +25,10 @@ const ProfileDrawer = ({ isOpen, onClose, data }: ProfileDrawerProps) => {
 
   // 대화 생성 날짜
   const joinedDate = useMemo(() => {
-    return format(new Date(otherUser.createdAt), 'yyyy년 MM월 dd일', {
+    return format(new Date(otherUser?.createdAt), 'yyyy년 MM월 dd일', {
       locale: ko,
     });
-  }, [otherUser.createdAt]);
+  }, [otherUser?.createdAt]);
 
   const title = useMemo(() => {
     return data.name || otherUser.name;

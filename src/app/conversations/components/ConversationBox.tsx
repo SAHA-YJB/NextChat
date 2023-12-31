@@ -96,7 +96,7 @@ const ConversationBox = ({ data, selected }: ConversationBoxProps) => {
           <span className='absolute inset-0' aria-hidden='true' />
           <div className='flex items-center justify-between mb-1'>
             <p className='font-medium text-gray-900 text-md'>
-              {data.name || otherUser.name}
+              {data.name || otherUser?.name}
             </p>
             {lastMessage?.createdAt && (
               <p className='text-xs font-light text-gray-400 '>

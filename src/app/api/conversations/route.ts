@@ -1,6 +1,7 @@
 import getCurrentUser from '@/app/actions/getCurrentUser';
 import { NextResponse } from 'next/server';
 import prisma from '@/libs/prismaDb';
+import { pusherServer } from '@/libs/pusher';
 
 // 대화생성 API
 export async function POST(request: Request) {
@@ -38,6 +39,12 @@ export async function POST(request: Request) {
       include: {
         users: true,
       },
+    });
+
+    newConversation.users.map((user) => {
+      if (user.email) {
+        pusherServer.trigger(user.email, 'conversation:new', newConversation);
+      }
     });
 
     return NextResponse.json(newConversation);
