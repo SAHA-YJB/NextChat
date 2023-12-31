@@ -22,6 +22,7 @@ const ConversationList = ({ users, initItems }: ConversationListProps) => {
   const { isOpen, conversationId } = useConversation();
   const session = useSession();
 
+  // 현재 로그인한 사용자의 이메일을 채널로 구독
   const pusherKey = session.data?.user?.email;
 
   useEffect(() => {
@@ -58,6 +59,7 @@ const ConversationList = ({ users, initItems }: ConversationListProps) => {
         return [...current.filter((item) => item.id !== conversation.id)];
       });
     };
+    // 대화창 리스트 업데이트 바인드
     pusherClient.bind('conversation:update', updateHandler);
     pusherClient.bind('conversation:new', newHandler);
     pusherClient.bind('conversation:remove', removeHandler);

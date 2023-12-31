@@ -17,7 +17,9 @@ const MessageBox = ({ data, isLast }: MessageBoxProps) => {
   const session = useSession();
   const [imageModalOpen, setImageModalOpen] = useState(false);
 
+  // 내가 보낸 메시지인지 확인
   const isOwn = session.data?.user?.email === data?.sender?.email;
+  // 메시지를 읽은 사람 목록
   const seenList = (data.seen || [])
     .filter((user) => user.email !== data?.sender?.email)
     .map((user) => user.name)

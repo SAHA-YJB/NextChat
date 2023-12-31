@@ -17,6 +17,7 @@ const Body = ({ initMessages }: BodyProps) => {
   const { conversationId } = useConversation();
 
   useEffect(() => {
+    // conversationId 이 채널에 구독
     pusherClient.subscribe(conversationId);
     bottomRef?.current?.scrollIntoView({ behavior: 'smooth' });
 
@@ -31,10 +32,11 @@ const Body = ({ initMessages }: BodyProps) => {
       });
       bottomRef?.current?.scrollIntoView({ behavior: 'smooth' });
     };
-
+    // 바인딩하기 - 이벤트가 오면 함수 호출
     pusherClient.bind('messages:new', messageHandler);
 
     return () => {
+      // 메모리 누수 방지
       pusherClient.unsubscribe(conversationId);
       pusherClient.unbind('messages:new', messageHandler);
     };

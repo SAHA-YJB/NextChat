@@ -1,7 +1,7 @@
 import getCurrentUser from '@/app/actions/getCurrentUser';
-import { NextResponse } from 'next/server';
 import prisma from '@/libs/prismaDb';
 import { pusherServer } from '@/libs/pusher';
+import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
   try {
@@ -13,7 +13,9 @@ export async function POST(request: Request) {
       return new NextResponse('Unauthorized', { status: 401 });
     }
 
+    // 새 메시지 생성
     const newMessage = await prisma.message.create({
+      // 리턴할 때 포함할 필드
       include: {
         seen: true,
         sender: true,
@@ -26,7 +28,7 @@ export async function POST(request: Request) {
         sender: { connect: { id: currentUser.id } },
       },
     });
-
+    // 채팅방 업데이트
     const updatedConversation = await prisma.conversation.update({
       where: { id: conversationId },
       data: {
@@ -38,7 +40,7 @@ export async function POST(request: Request) {
         messages: { include: { seen: true } },
       },
     });
-
+    // 클라이언트에게 응답 채널 / 이벤트 / 데이터 전송
     await pusherServer.trigger(conversationId, 'messages:new', newMessage);
 
     const lastMessage =
