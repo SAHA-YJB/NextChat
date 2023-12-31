@@ -17,8 +17,8 @@ const Body = ({ initMessages }) => {
     bottomRef?.current?.scrollIntoView({ behavior: 'smooth' });
 
     const messageHandler = (message: FullMessageType) => {
-      // axios.post(`/api/conversations/${conversationId}/seen`);
-      console.log('messageHandler', message);
+      axios.post(`/api/conversations/${conversationId}/seen`);
+
       setMessages((current) => {
         if (find(current, { id: message.id })) {
           return current;

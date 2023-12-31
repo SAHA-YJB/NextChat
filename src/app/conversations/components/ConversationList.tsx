@@ -1,9 +1,11 @@
 'use client';
 import useConversation from '@/hooks/useConversation';
+import { pusherClient } from '@/libs/pusher';
 import { FullConversationType } from '@/types';
 import { User } from '@prisma/client';
 import clsx from 'clsx';
-import { useState } from 'react';
+import { useSession } from 'next-auth/react';
+import { useEffect, useState } from 'react';
 import { MdOutlineGroupAdd } from 'react-icons/md';
 import ConversationBox from './ConversationBox';
 
@@ -17,6 +19,37 @@ const ConversationList = ({ users, initItems }: ConversationListProps) => {
   const [items, setItems] = useState(initItems);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { isOpen, conversationId } = useConversation();
+  const session = useSession();
+
+  const pusherKey = session.data?.user?.email;
+
+  useEffect(() => {
+    if (!pusherKey) {
+      return;
+    }
+    pusherClient.subscribe(pusherKey);
+
+    const updateHandler = (conversation: FullConversationType) => {
+      setItems((current) =>
+        current.map((currentConversation) => {
+          if (currentConversation.id === conversation.id) {
+            return {
+              ...currentConversation,
+              messages: conversation.messages,
+            };
+          }
+          return currentConversation;
+        })
+      );
+    };
+
+    pusherClient.bind('conversation:update', updateHandler);
+
+    return () => {
+      pusherClient.unsubscribe(pusherKey);
+      pusherClient.unbind('conversation:update', updateHandler);
+    };
+  }, [pusherKey]);
 
   return (
     <aside
