@@ -48,7 +48,7 @@ const SettingsModal = ({
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     setIsLoading(true);
     axios
-      .post('/api/settings', data)
+      .patch('/api/settings', data)
       .then(() => {
         router.refresh();
         onClose();

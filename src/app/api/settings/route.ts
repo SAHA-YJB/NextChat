@@ -2,7 +2,7 @@ import getCurrentUser from '@/app/actions/getCurrentUser';
 import { NextResponse } from 'next/server';
 import prisma from '@/libs/prismaDb';
 
-export async function POST(req: Request) {
+export async function PATCH(req: Request) {
   try {
     const currentUser = await getCurrentUser();
     const body = await req.json();
