@@ -11,7 +11,7 @@ export async function PATCH(req: Request) {
     if (!currentUser?.id) {
       return new NextResponse('Unauthorized', { status: 401 });
     }
-
+    // 이름 이미지 업데이트
     const updatedUser = await prisma.user.update({
       where: { id: currentUser.id },
       data: {

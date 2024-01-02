@@ -1,15 +1,15 @@
 'use client';
 import { User } from '@prisma/client';
 import axios from 'axios';
+import { CldUploadButton } from 'next-cloudinary';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { FieldValues, useForm, SubmitHandler } from 'react-hook-form';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import Modal from '../modals/Modal';
-import Input from '../inputs/Input';
-import Image from 'next/image';
-import { CldUploadButton } from 'next-cloudinary';
 import Button from '../Button';
+import Input from '../inputs/Input';
+import Modal from '../modals/Modal';
 
 interface SettingsModalProps {
   isOpen?: boolean;
