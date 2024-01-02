@@ -1,7 +1,7 @@
 import getCurrentUser from '@/app/actions/getCurrentUser';
-import { NextResponse } from 'next/server';
 import prisma from '@/libs/prismaDb';
 import { pusherServer } from '@/libs/pusher';
+import { NextResponse } from 'next/server';
 
 // 대화생성 API
 export async function POST(request: Request) {
@@ -13,7 +13,7 @@ export async function POST(request: Request) {
     if (!currentUser?.id || !currentUser?.email) {
       return new NextResponse('Unauthorized', { status: 400 });
     }
-
+    // 기존의 채팅방이 있는지 확인
     const existingConversation = await prisma.conversation.findMany({
       where: {
         OR: [
@@ -24,11 +24,11 @@ export async function POST(request: Request) {
     });
 
     const singleConversation = existingConversation[0];
-    // 이미 생성된 채팅방이 있음 그냥 넘겨주기
+    // 이미 생성된 채팅방이 있으면 그냥 넘겨주기
     if (singleConversation) {
       return NextResponse.json(singleConversation);
     }
-
+    // 없으면 새로 생성
     const newConversation = await prisma.conversation.create({
       data: {
         users: {

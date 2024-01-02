@@ -4,11 +4,11 @@ import { pusherClient } from '@/libs/pusher';
 import { FullConversationType } from '@/types';
 import { User } from '@prisma/client';
 import clsx from 'clsx';
+import { find } from 'lodash';
 import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import { MdOutlineGroupAdd } from 'react-icons/md';
 import ConversationBox from './ConversationBox';
-import { find } from 'lodash';
 
 interface ConversationListProps {
   users: User[];

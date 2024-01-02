@@ -18,7 +18,7 @@ const UserBox = ({ data }: UserBoxProps) => {
     setIsLoading(true);
     axios
       .post('/api/conversations', { userId: data.id })
-      .then((data) => router.push(`/conversations/${data.data.id}`))
+      .then((data) => router.push(`/conversations/${data.data.id}`)) // conversation id임
       .catch((err) => console.error(err))
       .finally(() => setIsLoading(false));
   };

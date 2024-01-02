@@ -4,6 +4,7 @@ import { useMemo } from 'react';
 import { FullConversationType } from '../types';
 import { User } from '@prisma/client';
 
+// 다른 유저 가져오기
 const useOtherUser = (
   conversation: FullConversationType | { users: User[] }
 ) => {

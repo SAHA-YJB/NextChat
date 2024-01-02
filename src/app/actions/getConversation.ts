@@ -1,6 +1,7 @@
 import prisma from '@/libs/prismaDb';
 import getCurrentUser from './getCurrentUser';
 
+// 생성된 대화 가져오기
 const getConversations = async () => {
   const currentUser = await getCurrentUser();
 

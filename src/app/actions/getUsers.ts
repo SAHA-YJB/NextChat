@@ -1,6 +1,7 @@
-import getSession from './getSession';
 import prisma from '@/libs/prismaDb';
+import getSession from './getSession';
 
+// 유저 목록 가져오기
 const getUsers = async () => {
   const session = await getSession();
 

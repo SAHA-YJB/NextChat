@@ -5,6 +5,7 @@ import { ClipLoader } from 'react-spinners';
 
 const LoadingModal = () => {
   return (
+    // headlessui 라이브러리는 리액트 포탈을 이용함
     <Transition.Root show as={Fragment}>
       {/* 다이얼로그 모달 */}
       <Dialog as='div' className='relative z-50' onClose={() => {}}>
@@ -18,7 +19,7 @@ const LoadingModal = () => {
           leaveFrom='opacity-100'
           leaveTo='opacity-0'
         >
-          <div className='fixed inset-0 transition-opacity bg-gray-100 bg-opacity-50 ' />
+          <div className='fixed inset-0 transition-opacity bg-gray-500 bg-opacity-50 ' />
         </Transition.Child>
 
         {/* 스피너부분 */}

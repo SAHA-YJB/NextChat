@@ -1,7 +1,6 @@
 import Sidebar from '@/components/sidebar/Sidebar';
-import React from 'react';
-import UserList from './components/UserList';
 import getUsers from '../actions/getUsers';
+import UserList from './components/UserList';
 
 const UserLayout = async ({ children }: { children: React.ReactNode }) => {
   // 유저들 가져오기
