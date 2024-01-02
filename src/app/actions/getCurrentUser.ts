@@ -1,6 +1,7 @@
 import prisma from '@/libs/prismaDb';
 import getSession from './getSession';
 
+// 현재 유저를 찾는 함수
 const getCurrentUser = async () => {
   try {
     const session = await getSession();

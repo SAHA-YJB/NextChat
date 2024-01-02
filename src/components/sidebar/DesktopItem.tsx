@@ -47,6 +47,7 @@ const DesktopItem = ({
         )}
       >
         <Icon className='w-6 h-6 shrink-0' aria-hidden='true' />
+        {/* 접근성을 위해 넣는 라벨 */}
         <span className='sr-only'>{label}</span>
       </Link>
     </li>

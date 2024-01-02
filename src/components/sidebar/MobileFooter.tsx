@@ -8,6 +8,7 @@ const MobileFooter = () => {
   const routes = useRoutes();
   const { isOpen } = useConversation();
 
+  // conversastion id가 존재하는 경우에는 null을 반환
   if (isOpen) {
     return null;
   }
