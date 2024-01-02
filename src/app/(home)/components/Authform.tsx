@@ -62,7 +62,6 @@ const AuthForm = () => {
           if (callback?.error) {
             toast.error('다시 시도해주세요.');
           }
-
           if (callback?.ok) {
             router.push('/conversations');
           }
@@ -80,7 +79,6 @@ const AuthForm = () => {
           if (callback?.error) {
             toast.error('다시 시도해주세요.');
           }
-
           if (callback?.ok) {
             router.push('/conversations');
           }
@@ -97,7 +95,6 @@ const AuthForm = () => {
         if (callback?.error) {
           toast.error('다시 시도해주세요.');
         }
-
         if (callback?.ok) {
           router.push('/conversations');
         }
@@ -172,7 +169,7 @@ const AuthForm = () => {
           <div>
             {variant === 'LOGIN'
               ? '메신저를 처음 사용하시나요?'
-              : '이미 계정이 있으신가요??'}
+              : '이미 계정이 있으신가요?'}
           </div>
           <div onClick={toggleVariant} className='underline cursor-pointer'>
             {variant === 'LOGIN' ? '계정 만들기' : '로그인하기'}

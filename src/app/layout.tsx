@@ -22,6 +22,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={inter.className}>
+        {/* 세션프로바이더로 감싼 부분 */}
         <AuthContext>
           <ToasterContext />
           {children}

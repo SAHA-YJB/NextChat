@@ -12,6 +12,7 @@ export default function Home() {
           로그인 & 회원가입
         </h2>
       </div>
+      {/* 로그인인지 회원가입인지 분기처리 하는 컴포넌트 */}
       <Authform />
     </div>
   );
