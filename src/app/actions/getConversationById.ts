@@ -1,5 +1,5 @@
-import getCurrentUser from './getCurrentUser';
 import prisma from '@/libs/prismaDb';
+import getCurrentUser from './getCurrentUser';
 
 // 대화 아이디 가져오기
 const getConversationById = async (conversationId: string) => {

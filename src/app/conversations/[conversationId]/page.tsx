@@ -1,3 +1,4 @@
+// 채팅 디테일 페이지
 import getConversationById from '@/app/actions/getConversationById';
 import getMessages from '@/app/actions/getMessages';
 import EmptyState from '@/components/EmptyState';
@@ -13,6 +14,10 @@ const ConversationIdpage = async ({ params }: { params: IParams }) => {
   // 메시지와 대화 정보를 가져옴
   const conversation = await getConversationById(params.conversationId);
   const messages = await getMessages(params.conversationId);
+
+  console.log('params', params);
+  console.log('params.conversationId', params.conversationId);
+  console.log('conversationIdpage', conversation, messages);
 
   if (!conversation) {
     return (

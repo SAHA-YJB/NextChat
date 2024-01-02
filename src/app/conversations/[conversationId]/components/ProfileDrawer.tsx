@@ -24,15 +24,13 @@ const ProfileDrawer = ({ isOpen, onClose, data }: ProfileDrawerProps) => {
   const otherUser = useOtherUser(data);
 
   // 대화 생성 날짜
-  const joinedDate = useMemo(() => {
-    return format(new Date(otherUser?.createdAt), 'yyyy년 MM월 dd일', {
-      locale: ko,
-    });
-  }, [otherUser?.createdAt]);
+  const joinedDate = format(
+    new Date(otherUser?.createdAt),
+    'yyyy년 MM월 dd일',
+    { locale: ko }
+  );
 
-  const title = useMemo(() => {
-    return data.name || otherUser.name;
-  }, [data.name, otherUser.name]);
+  const title = data.name || otherUser.name;
 
   const { members } = useActiveList();
   const isActive = members.indexOf(otherUser?.email!) !== -1;
@@ -52,6 +50,7 @@ const ProfileDrawer = ({ isOpen, onClose, data }: ProfileDrawerProps) => {
       />
       <Transition.Root show={isOpen} as={Fragment}>
         <Dialog as='div' className='relative z-50' onClose={onClose}>
+          {/* 백그라운드 부분 */}
           <Transition.Child
             as={Fragment}
             enter='ease-out duration-500'
@@ -63,6 +62,8 @@ const ProfileDrawer = ({ isOpen, onClose, data }: ProfileDrawerProps) => {
           >
             <div className='fixed inset-0 bg-black bg-opacity-40' />
           </Transition.Child>
+
+          {/* 하얀색 콘텐츠부분 */}
           <div className='fixed inset-0 overflow-hidden'>
             <div className='absolute inset-0 overflow-hidden'>
               <div className='fixed inset-y-0 right-0 flex max-w-full pl-10 pointer-events-none'>
