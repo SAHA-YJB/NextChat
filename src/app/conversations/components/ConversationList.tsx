@@ -29,6 +29,7 @@ const ConversationList = ({ users, initItems }: ConversationListProps) => {
     if (!pusherKey) {
       return;
     }
+    // 이메일로 채넗 구독
     pusherClient.subscribe(pusherKey);
 
     const updateHandler = (conversation: FullConversationType) => {

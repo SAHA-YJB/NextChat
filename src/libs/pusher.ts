@@ -22,3 +22,8 @@ export const pusherClient = new PusherClient(
     cluster: 'ap3',
   }
 );
+
+// 1. 채널에 구독
+// 2. 채널에 이벤트 리스너 바인딩
+// 3. 이벤트 발생시 콜백함수 실행
+// 4. 채널 구독 해제 / 바인딩 해제

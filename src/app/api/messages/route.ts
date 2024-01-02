@@ -40,7 +40,7 @@ export async function POST(request: Request) {
         messages: { include: { seen: true } },
       },
     });
-    // 클라이언트에게 응답 채널 / 이벤트 / 데이터 전송
+    // 클라이언트에게 응답 - 채널 / 이벤트 / 데이터 전송
     await pusherServer.trigger(conversationId, 'messages:new', newMessage);
 
     const lastMessage =

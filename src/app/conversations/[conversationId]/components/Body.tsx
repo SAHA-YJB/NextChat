@@ -17,7 +17,7 @@ const Body = ({ initMessages }: BodyProps) => {
   const { conversationId } = useConversation();
 
   useEffect(() => {
-    // conversationId 이 채널에 구독
+    // conversationId -> 채널에 구독
     pusherClient.subscribe(conversationId);
     bottomRef?.current?.scrollIntoView({ behavior: 'smooth' });
 
