@@ -7,6 +7,7 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 import KakaoProvider from 'next-auth/providers/kakao';
 
+// 재사용하기 위해 authOptions로 따로 빼놓음
 export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
@@ -64,5 +65,5 @@ export const authOptions: AuthOptions = {
 
 const handler = NextAuth(authOptions);
 
-// 라우트파일이기 때문에 get, post로 내보냄
+// 라우트 파일이기 때문에 get 또는 post로 내보냄
 export { handler as GET, handler as POST };

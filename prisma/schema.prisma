@@ -16,11 +16,13 @@ model User {
   email          String?   @unique
   emailVerified  DateTime?
   image          String?
+  // 해시한 비밀번호
   hashedPassword String?
   accounts       Account[]
   Session        Session[]
   // 유저가 작성한 모든 메시지
   messages       Message[]
+  // 유저가 언제 생성됐는지
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
 
@@ -59,6 +61,7 @@ model Account {
   @@unique([provider, providerAccountId])
 }
 
+// 채팅방
 model Conversation {
   id            String   @id @default(auto()) @map("_id") @db.ObjectId
   createdAt     DateTime @default(now())
@@ -73,12 +76,14 @@ model Conversation {
   users   User[]   @relation(fields: [userIds], references: [id])
 }
 
+// 채팅 하나하나의 메시지
 model Message {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   body      String?
   image     String?
   createdAt DateTime @default(now())
 
+  // 메시지를 본 사람들 아이디
   seenIds String[] @db.ObjectId
   seen    User[]   @relation("Seen", fields: [seenIds], references: [id])
 

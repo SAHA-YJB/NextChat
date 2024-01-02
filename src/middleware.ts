@@ -9,6 +9,6 @@ export default withAuth({
 });
 
 export const config = {
-  // 로그인된 유저만 접근가능 아니면 로그인페이지
+  // 로그인된 유저만 접근가능한 경로 로그인 되지 않았다면 로그인페이지로 이동
   matcher: ['/conversatons/:path*', '/users/:path*'],
 };
